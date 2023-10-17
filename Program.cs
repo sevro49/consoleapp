@@ -5,52 +5,50 @@ using System.Threading.Tasks;
 
 namespace consoleapp
 {
-    class Student
+    class Product
     {
-        public int StuID { get; set; }
-
         public string Name { get; set; }
 
-        public string Branch { get; set; }
+        public double Price { get; set; } 
+
+        public string Description { get; set; }
     }
     public class Program
     {
         static void Main(string[] args)
         {
+            System.Console.WriteLine("Quantity: ");
+            int quantity = int.Parse(Console.ReadLine());
 
-            Student stu1 = new Student();
-            stu1.StuID = 49;
-            stu1.Name = "Emre";
-            stu1.Branch = "12";
+            Product[] products = new Product[quantity];
+            int i = 0;
 
-            System.Console.WriteLine($"Id: {stu1.StuID} name: {stu1.Name} branch: {stu1.Branch}");
+            Product prd;
 
-            Student stu2 = new Student(){
-                StuID = 200,
-                Name = "Zeynep",
-                Branch = "13"
-            };
+            do{
+                prd = new Product();
+                System.Console.WriteLine("product name: ");
+                prd.Name = Console.ReadLine();
 
-            System.Console.WriteLine($"Id: {stu2.StuID} name: {stu2.Name} branch: {stu2.Branch}");
+                System.Console.WriteLine("product price: ");
+                prd.Price = double.Parse(Console.ReadLine());
 
-            Student stu3 = new Student(){
-                StuID = 300,
-                Name = "Elif",
-                Branch = "8"
-            };
+                System.Console.WriteLine("product description: ");
+                prd.Description = Console.ReadLine();
 
-            System.Console.WriteLine($"Id: {stu3.StuID} name: {stu3.Name} branch: {stu3.Branch}");
+                products[i] = prd;
+                i++;
+            } while (quantity > i);
 
-            System.Console.WriteLine("----------------------------------------------------");
+            System.Console.WriteLine("------------------------");
 
-            Student[] students = new Student[3];
-            students[0] = stu1;
-            students[1] = stu2;
-            students[2] = stu3;
-
-            foreach(var student in students){
-                System.Console.WriteLine($"Id: {student.StuID} name: {student.Name} branch: {student.Branch}");
+            foreach(var prdt in products){
+                System.Console.WriteLine($"{prdt.Name} {prdt.Price} {prdt.Description}");
             }
+
+
+
+
         }
 
 
