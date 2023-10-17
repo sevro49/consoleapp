@@ -1,14 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
-int sayi = 10;
-double sayi2 = 10.2;
-decimal sayi3 = 11.2m;
+﻿System.Console.WriteLine("Bir sayi girin: ");
+int sayi1 = int.Parse(Console.ReadLine());
 
-string name = "Emre Güler";
-char ch = 'Z';
+System.Console.WriteLine("Bir sayi daha girin: ");
+int sayi2 = int.Parse(Console.ReadLine());
 
-bool isRetired = true;
+int toplam = sayi1 + sayi2;
+System.Console.WriteLine($"Girilen toplam değer: {toplam}");
 
-
-Console.WriteLine(sayi);
-System.Console.WriteLine(sayi2);
-System.Console.WriteLine(sayi3);
