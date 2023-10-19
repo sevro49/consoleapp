@@ -1,53 +1,43 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace consoleapp
 {
-    class Product
+    class Person
     {
         public string Name { get; set; }
 
-        public double Price { get; set; } 
+        public int BirthYear { get; set; }
 
-        public string Description { get; set; }
+        public string Intro()
+        {
+            return $"name: {this.Name} age: {this.CalculateAge()}";
+        }
+
+        public int CalculateAge() {
+            return DateTime.Now.Year - this.BirthYear;
+        }
     }
+
     public class Program
     {
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Quantity: ");
-            int quantity = int.Parse(Console.ReadLine());
 
-            Product[] products = new Product[quantity];
-            int i = 0;
+            Person p1 = new Person() { Name = "Emre", BirthYear = 2001 };
+            Person p2 = new Person() { Name = "Zeynep", BirthYear = 2000 };
+            Person p3 = new Person() { Name = "Elif İkra", BirthYear = 2010 };
 
-            Product prd;
+            var str1 = p1.Intro();
+            var str2 = p2.Intro();
+            var str3 = p3.Intro();
 
-            do{
-                prd = new Product();
-                System.Console.WriteLine("product name: ");
-                prd.Name = Console.ReadLine();
-
-                System.Console.WriteLine("product price: ");
-                prd.Price = double.Parse(Console.ReadLine());
-
-                System.Console.WriteLine("product description: ");
-                prd.Description = Console.ReadLine();
-
-                products[i] = prd;
-                i++;
-            } while (quantity > i);
-
-            System.Console.WriteLine("------------------------");
-
-            foreach(var prdt in products){
-                System.Console.WriteLine($"{prdt.Name} {prdt.Price} {prdt.Description}");
-            }
-
-
-
+            System.Console.WriteLine(str1 );
+            System.Console.WriteLine(str2 );
+            System.Console.WriteLine(str3 );
 
         }
 
