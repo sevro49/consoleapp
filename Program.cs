@@ -67,41 +67,25 @@ namespace consoleapp
         }
     }
 
-    class Calculcation
+    class Calculation
     {
-        // public int Addition(int x, int y) { 
-        //     return x + y;
-        // }
-
-        public int Addition(params int[] numbers) { 
-
-            int sum = 0;
-            foreach(var num in numbers){
-                sum += num;
-            }
-            return sum;
+        public int Addition(int x, int y) { 
+            return x + y;
         }
+
+        public int Addition(int x, int y, int z) { 
+            return x + y + z;
+        }
+
     }
 
     public class Program
     {
         static void Main(string[] args)
         {
-            // var opel = new Car() { Brand = "Opel", Model = "Astra", Color = "White", IsAutoTransmission = true };
-            // // opel.Start();
-            // // opel.Stop();
-            // // opel.SlowDown();
-            // // opel.Accelerate();
-            // // opel.Menu();
-
-            // var mazda = new Car() { Brand = "Mazda", Model = "Rx-7", Color = "Red", IsAutoTransmission = true };
-            // mazda.Menu();
-
-            var calculate = new Calculcation();
-            System.Console.WriteLine(calculate.Addition(5,2,6,8,43,3));  
-
+            var calculate = new Calculation();
+            System.Console.WriteLine(calculate.Addition(4, 5, 6));
+            System.Console.WriteLine(calculate.Addition(4, 5));
         }
-
-
     }
 }
