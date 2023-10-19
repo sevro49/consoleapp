@@ -6,39 +6,81 @@ using System.Threading.Tasks;
 
 namespace consoleapp
 {
-    class Person
+    class Car
     {
-        public string Name { get; set; }
+        public string Brand { get; set; }
 
-        public int BirthYear { get; set; }
+        public string Model { get; set; }
 
-        public string Intro()
+        public string Color { get; set; }
+
+        public bool IsAutoTransmission { get; set; }
+
+        public void Start()
         {
-            return $"name: {this.Name} age: {this.CalculateAge()}";
+            System.Console.WriteLine($"{this.Brand} {this.Model} was started");
         }
 
-        public int CalculateAge() {
-            return DateTime.Now.Year - this.BirthYear;
+        public void Stop()
+        {
+            System.Console.WriteLine($"{this.Brand} {this.Model}was stopped");
+        }
+
+        public void SlowDown()
+        {
+            System.Console.WriteLine($"{this.Brand} {this.Model} is slowing down");
+        }
+
+        public void Accelerate()
+        {
+            System.Console.WriteLine($"{this.Brand} {this.Model} is accelerating");
+        }
+
+        public void Menu()
+        {
+            string command = "";
+
+            do
+            {
+                System.Console.WriteLine("Pick one of options 1-Start 2-Accelerate 3-Slow Down 4-Stop (e/E = exit)");
+                command = Console.ReadLine();
+
+                switch (command)
+                {
+                    case "1":
+                        this.Start();
+                        break;
+                    case "2":
+                        this.Accelerate();
+                        break;
+                    case "3":
+                        this.SlowDown();
+                        break;
+                    case "4":
+                        this.Stop();
+                        break;
+                    default:
+                        System.Console.WriteLine("Program stopped");
+                        break;
+                }
+            } while (command.ToLower() != "e");
         }
     }
+
 
     public class Program
     {
         static void Main(string[] args)
         {
+            var opel = new Car() { Brand = "Opel", Model = "Astra", Color = "White", IsAutoTransmission = true };
+            // opel.Start();
+            // opel.Stop();
+            // opel.SlowDown();
+            // opel.Accelerate();
+            // opel.Menu();
 
-            Person p1 = new Person() { Name = "Emre", BirthYear = 2001 };
-            Person p2 = new Person() { Name = "Zeynep", BirthYear = 2000 };
-            Person p3 = new Person() { Name = "Elif İkra", BirthYear = 2010 };
-
-            var str1 = p1.Intro();
-            var str2 = p2.Intro();
-            var str3 = p3.Intro();
-
-            System.Console.WriteLine(str1 );
-            System.Console.WriteLine(str2 );
-            System.Console.WriteLine(str3 );
-
+            var mazda = new Car() { Brand = "Mazda", Model = "Rx-7", Color = "Red", IsAutoTransmission = true };
+            mazda.Menu();
         }
 
 
