@@ -66,13 +66,6 @@ namespace consoleapp
 
     public class Program
     {
-        static void Main(string[] args)
-        {
-            var p = new Product();
-            p.Name = "Samsung S7";
-            p.Price = 2000;
-            System.Console.WriteLine(p.Name);
-            System.Console.WriteLine(p.Price);
-        }
+
     }
 }
