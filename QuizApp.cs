@@ -33,13 +33,16 @@ namespace consoleapp
         {
             this.Questions = questions;
             this.QuestionIndex = 0;
+            this.Score = 0;
         }
 
         private Question[] Questions { get; set; }
 
-        public int QuestionIndex { get; set; }
+        private int QuestionIndex { get; set; }
 
-        public Question GetQuestion()
+        private int Score { get; set; }
+
+        private Question GetQuestion()
         {
             return this.Questions[this.QuestionIndex];
         }
@@ -47,6 +50,7 @@ namespace consoleapp
         public void DisplayQuestion()
         {
             var question = this.GetQuestion();
+            this.DisplayProgress();
             System.Console.WriteLine($"{this.QuestionIndex + 1}){question.Text}");
 
             foreach (var o in question.Options)
@@ -58,15 +62,16 @@ namespace consoleapp
             this.Guess(answer);
         }
 
-        public void Guess(string answer)
+        private void Guess(string answer)
         {
             var question = this.GetQuestion();
-            System.Console.WriteLine(question.CheckAnswer(answer));
+            if (question.CheckAnswer(answer))
+                this.Score++;
             System.Console.WriteLine();
             this.QuestionIndex++;
             if (this.Questions.Length == this.QuestionIndex)
             {
-                return;
+                this.DisplayScore();
             }
             else
             {
@@ -74,6 +79,21 @@ namespace consoleapp
             }
         }
 
+        private void DisplayScore()
+        {
+            System.Console.WriteLine($"Score: {this.Score}");
+        }
+
+        private void DisplayProgress()
+        {
+            int totalQuestion = this.Questions.Length;
+            int currentQuestion = this.QuestionIndex + 1;
+
+            if (totalQuestion >= currentQuestion)
+            {
+                System.Console.WriteLine($"Question: {currentQuestion}/{totalQuestion}");
+            }
+        }
     }
 
     public class QuizApp
