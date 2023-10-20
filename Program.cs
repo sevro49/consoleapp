@@ -8,6 +8,19 @@ namespace consoleapp
 {
     class Car
     {
+        public Car()
+        {
+            
+        }
+
+        // Constructor
+        public Car(string Brand, string Model, string Color, bool IsAutoTransmission)
+        {
+            this.Brand = Brand;
+            this.Model = Model;
+            this.Color = Color;
+            this.IsAutoTransmission = IsAutoTransmission;
+        }
         public string Brand { get; set; }
 
         public string Model { get; set; }
@@ -84,8 +97,10 @@ namespace consoleapp
         static void Main(string[] args)
         {
             var calculate = new Calculation();
-            System.Console.WriteLine(calculate.Addition(4, 5, 6));
-            System.Console.WriteLine(calculate.Addition(4, 5));
+            
+            var opel = new Car("Opel", "Astra", "Red", true);
+            System.Console.WriteLine(opel.Brand);
+            var mazda = new Car();
         }
     }
 }
