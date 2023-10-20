@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -6,71 +7,72 @@ using System.Threading.Tasks;
 
 namespace consoleapp
 {
-    class Comment{
-        public int Id { get; set; }
-
-        public string Text { get; set; }
-    }
-
     class Product
     {
-        public Product()
-        {
-            this.Id = (new Random()).Next(11111,99999);
-            this.Comments = new Comment[3];
+        private string _name;
+        public string Name{
+            get{
+                return _name;
+            }
+
+            set{
+                if(!string.IsNullOrEmpty(value)){
+                    _name = value;
+                } else {
+                    throw new Exception("Please enter name!");
+                }
+            }
         }
-
-        public Product(int Id):this()
+        
+        private double _price;
+        public double Price
         {
-            this.Id = Id;
+            get
+            {
+                return _price;
+            }
+
+            set
+            {
+                if (value < 0)
+            {
+                _price = 0;
+            }
+            else
+            {
+                _price = value;
+            }
+            }
         }
-
-        public Product(int Id, string Name, double Price, bool IsApproved):this(Id)
-        {
-            this.Id = Id;
-            this.Name = Name;
-            this.Price = Price;
-            this.IsApproved = IsApproved;
-        }
-
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-
-        public double Price { get; set; }
 
         public bool IsApproved { get; set; }
+        
+        // public void setPrice(double price)
+        // {
+        //     if (price < 0)
+        //     {
+        //         this.Price = 0;
+        //     }
+        //     else
+        //     {
+        //         this.Price = price;
+        //     }
+        // }
 
-        public Comment[] Comments { get; set; }
+        // public double GetPrice(){
+        //     return this.Price;
+        // }
     }
 
     public class Program
     {
         static void Main(string[] args)
         {
-            var c1 = new Comment{ Id = 1, Text = "nice product"};
-            
-            var p1 = new Product();
-            p1.Comments[0] = c1;
-
-            var p2 = new Product(12314);
-            var p3 = new Product(143242, "Iphone 15", 200, true);
-            System.Console.WriteLine(p1.Id);
-            System.Console.WriteLine(p1.Name);
-            System.Console.WriteLine(p1.Price);
-            System.Console.WriteLine(p1.IsApproved);
-            System.Console.WriteLine(p1.Comments[0].Text);
-            System.Console.WriteLine("**********************");
-            System.Console.WriteLine(p2.Id);
-            System.Console.WriteLine(p2.Name);
-            System.Console.WriteLine(p2.Price);
-            System.Console.WriteLine(p2.IsApproved);
-            System.Console.WriteLine("**********************");
-            System.Console.WriteLine(p3.Id);
-            System.Console.WriteLine(p3.Name);
-            System.Console.WriteLine(p3.Price);
-            System.Console.WriteLine(p3.IsApproved);
-            
+            var p = new Product();
+            p.Name = "Samsung S7";
+            p.Price = 2000;
+            System.Console.WriteLine(p.Name);
+            System.Console.WriteLine(p.Price);
         }
     }
 }
