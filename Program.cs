@@ -6,101 +6,71 @@ using System.Threading.Tasks;
 
 namespace consoleapp
 {
-    class Car
-    {
-        public Car()
-        {
-            
-        }
+    class Comment{
+        public int Id { get; set; }
 
-        // Constructor
-        public Car(string Brand, string Model, string Color, bool IsAutoTransmission)
-        {
-            this.Brand = Brand;
-            this.Model = Model;
-            this.Color = Color;
-            this.IsAutoTransmission = IsAutoTransmission;
-        }
-        public string Brand { get; set; }
-
-        public string Model { get; set; }
-
-        public string Color { get; set; }
-
-        public bool IsAutoTransmission { get; set; }
-
-        public void Start()
-        {
-            System.Console.WriteLine($"{this.Brand} {this.Model} was started");
-        }
-
-        public void Stop()
-        {
-            System.Console.WriteLine($"{this.Brand} {this.Model}was stopped");
-        }
-
-        public void SlowDown()
-        {
-            System.Console.WriteLine($"{this.Brand} {this.Model} is slowing down");
-        }
-
-        public void Accelerate()
-        {
-            System.Console.WriteLine($"{this.Brand} {this.Model} is accelerating");
-        }
-
-        public void Menu()
-        {
-            string command = "";
-
-            do
-            {
-                System.Console.WriteLine("Pick one of options 1-Start 2-Accelerate 3-Slow Down 4-Stop (e/E = exit)");
-                command = Console.ReadLine();
-
-                switch (command)
-                {
-                    case "1":
-                        this.Start();
-                        break;
-                    case "2":
-                        this.Accelerate();
-                        break;
-                    case "3":
-                        this.SlowDown();
-                        break;
-                    case "4":
-                        this.Stop();
-                        break;
-                    default:
-                        System.Console.WriteLine("Program stopped");
-                        break;
-                }
-            } while (command.ToLower() != "e");
-        }
+        public string Text { get; set; }
     }
 
-    class Calculation
+    class Product
     {
-        public int Addition(int x, int y) { 
-            return x + y;
+        public Product()
+        {
+            this.Id = (new Random()).Next(11111,99999);
+            this.Comments = new Comment[3];
         }
 
-        public int Addition(int x, int y, int z) { 
-            return x + y + z;
+        public Product(int Id):this()
+        {
+            this.Id = Id;
         }
 
+        public Product(int Id, string Name, double Price, bool IsApproved):this(Id)
+        {
+            this.Id = Id;
+            this.Name = Name;
+            this.Price = Price;
+            this.IsApproved = IsApproved;
+        }
+
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public double Price { get; set; }
+
+        public bool IsApproved { get; set; }
+
+        public Comment[] Comments { get; set; }
     }
 
     public class Program
     {
         static void Main(string[] args)
         {
-            var calculate = new Calculation();
+            var c1 = new Comment{ Id = 1, Text = "nice product"};
             
-            var opel = new Car("Opel", "Astra", "Red", true);
-            System.Console.WriteLine(opel.Brand);
-            var mazda = new Car();
+            var p1 = new Product();
+            p1.Comments[0] = c1;
+
+            var p2 = new Product(12314);
+            var p3 = new Product(143242, "Iphone 15", 200, true);
+            System.Console.WriteLine(p1.Id);
+            System.Console.WriteLine(p1.Name);
+            System.Console.WriteLine(p1.Price);
+            System.Console.WriteLine(p1.IsApproved);
+            System.Console.WriteLine(p1.Comments[0].Text);
+            System.Console.WriteLine("**********************");
+            System.Console.WriteLine(p2.Id);
+            System.Console.WriteLine(p2.Name);
+            System.Console.WriteLine(p2.Price);
+            System.Console.WriteLine(p2.IsApproved);
+            System.Console.WriteLine("**********************");
+            System.Console.WriteLine(p3.Id);
+            System.Console.WriteLine(p3.Name);
+            System.Console.WriteLine(p3.Price);
+            System.Console.WriteLine(p3.IsApproved);
+            
         }
     }
 }
