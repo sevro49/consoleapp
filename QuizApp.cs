@@ -98,19 +98,6 @@ namespace consoleapp
 
     public class QuizApp
     {
-        static void Main(string[] args)
-        {
-            var q1 = new Question("What is the best programming language?", new string[] { "C#", "Java", "Python", "C++" }, "C#");
-            var q2 = new Question("What is the most popular programming language?", new string[] { "C#", "Java", "Python", "C++" }, "C#");
-            var q3 = new Question("What is the most profitable programming language?", new string[] { "C#", "Java", "Python", "C++" }, "C#");
-
-            var questions = new Question[] { q1, q2, q3 };
-            var quiz = new Quiz(questions);
-
-            quiz.DisplayQuestion();
-
-
-
-        }
+        
     }
 }

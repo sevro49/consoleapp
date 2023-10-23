@@ -7,65 +7,61 @@ using System.Threading.Tasks;
 
 namespace consoleapp
 {
-    class Product
+    class Student
     {
-        private string _name;
-        public string Name{
-            get{
-                return _name;
-            }
 
-            set{
-                if(!string.IsNullOrEmpty(value)){
-                    _name = value;
-                } else {
-                    throw new Exception("Please enter name!");
-                }
-            }
-        }
-        
-        private double _price;
-        public double Price
+        public Student(string name, int number)
         {
-            get
-            {
-                return _price;
-            }
-
-            set
-            {
-                if (value < 0)
-            {
-                _price = 0;
-            }
-            else
-            {
-                _price = value;
-            }
-            }
+            this.Name = name;
+            this.Number = number;
         }
 
-        public bool IsApproved { get; set; }
-        
-        // public void setPrice(double price)
-        // {
-        //     if (price < 0)
-        //     {
-        //         this.Price = 0;
-        //     }
-        //     else
-        //     {
-        //         this.Price = price;
-        //     }
-        // }
+        public string Name { get; set; }
 
-        // public double GetPrice(){
-        //     return this.Price;
-        // }
+        public int Number { get; set; }
+
+        public static string SchoolName = "My School";
+
+        public static string SchoolAdress = "My School Adress";
+
+        public void DisplayStudentDetails()
+        {
+            System.Console.WriteLine($"name: {this.Name} number: {this.Number}");
+        }
+
+        public static void DisplaySchoolDetails()
+        {
+            System.Console.WriteLine($"School: {SchoolName} address: {SchoolAdress}");
+        }
+
+    }
+
+    static class HelperMethods
+    {
+        public static string FixCharacter(string str)
+        {
+            return str.ToLower().Replace("ö", "o").Replace("ü", "u").Replace("ç", "c").Replace(" ", "-").Replace("ğ", "g");
+        }
     }
 
     public class Program
     {
+        static void Main(string[] args)
+        {
+            // var s1 = new Student("Emre", 100);
+            // var s2 = new Student("Zeynep", 102);
+            // var s3 = new Student("Ahmet", 103);
 
+
+            // Student.DisplaySchoolDetails();
+
+            // s1.DisplayStudentDetails();
+            // s2.DisplayStudentDetails();
+            // s3.DisplayStudentDetails();
+
+            string str = "Ölçme ve Değerlendirme";
+            var result = HelperMethods.FixCharacter(str);
+            System.Console.WriteLine(result);
+        }
     }
 }
