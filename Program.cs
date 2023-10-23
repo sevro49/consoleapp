@@ -7,61 +7,83 @@ using System.Threading.Tasks;
 
 namespace consoleapp
 {
-    class Student
+    class Product
     {
+        public int ProductId { get; set; }
 
-        public Student(string name, int number)
-        {
-            this.Name = name;
-            this.Number = number;
-        }
+        public string ProductName { get; set; }
 
-        public string Name { get; set; }
+        public double Price { get; set; }
 
-        public int Number { get; set; }
-
-        public static string SchoolName = "My School";
-
-        public static string SchoolAdress = "My School Adress";
-
-        public void DisplayStudentDetails()
-        {
-            System.Console.WriteLine($"name: {this.Name} number: {this.Number}");
-        }
-
-        public static void DisplaySchoolDetails()
-        {
-            System.Console.WriteLine($"School: {SchoolName} address: {SchoolAdress}");
-        }
+        public bool isApproved { get; set; }
 
     }
 
-    static class HelperMethods
+    static class ProductManager
     {
-        public static string FixCharacter(string str)
+        static Product[] Products;
+
+        static ProductManager()
         {
-            return str.ToLower().Replace("ö", "o").Replace("ü", "u").Replace("ç", "c").Replace(" ", "-").Replace("ğ", "g");
+            Products = new Product[5];
+
+            Products[0] = new Product { ProductId = 1, ProductName = "Iphone 6", Price = 3000, isApproved = false };
+            Products[1] = new Product { ProductId = 2, ProductName = "Iphone 7", Price = 4000, isApproved = false };
+            Products[2] = new Product { ProductId = 3, ProductName = "Iphone 8", Price = 5000, isApproved = true };
+            Products[3] = new Product { ProductId = 4, ProductName = "Iphone X", Price = 6000, isApproved = true };
+            Products[4] = new Product { ProductId = 5, ProductName = "Iphone 5", Price = 2000, isApproved = true };
         }
+
+        public static Product[] GetProducts()
+        {
+            return Products;
+        }
+
+        public static Product GetProductById(int id)
+        {
+            Product product = null;
+
+            foreach (var p in Products)
+            {
+                if (p.ProductId == id)
+                    product = p;
+
+            }
+            return product;
+        }
+
+        public static Product GetProductByName(string name)
+        {
+            Product product = null;
+
+            foreach (var p in Products)
+            {
+                if (p.ProductName == name)
+                    product = p;
+
+            }
+            return product;
+        }
+
     }
 
     public class Program
     {
         static void Main(string[] args)
         {
-            // var s1 = new Student("Emre", 100);
-            // var s2 = new Student("Zeynep", 102);
-            // var s3 = new Student("Ahmet", 103);
+            // var products = ProductManager.GetProducts();
+            // var product = ProductManager.GetProductById(2);
+
+            // System.Console.WriteLine($"name: {product.ProductName} price: {product.Price}");
+            // foreach (var p in products)
+            // {
+            //     System.Console.WriteLine($"name: {p.ProductName} price: {p.Price}");
+            // }
+
+            var product = ProductManager.GetProductByName("Iphone");
+            System.Console.WriteLine($"name: {product.ProductName} price: {product.Price}");
 
 
-            // Student.DisplaySchoolDetails();
-
-            // s1.DisplayStudentDetails();
-            // s2.DisplayStudentDetails();
-            // s3.DisplayStudentDetails();
-
-            string str = "Ölçme ve Değerlendirme";
-            var result = HelperMethods.FixCharacter(str);
-            System.Console.WriteLine(result);
         }
     }
 }
